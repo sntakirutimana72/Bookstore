@@ -1,0 +1,15 @@
+.Navbar {
+  display: flex;
+  gap: 25px;
+  padding: 20px 35px;
+}
+
+.UlLinks {
+  display: flex;
+  gap: 25px;
+}
+
+.Profile {
+  border-radius: 50%;
+  border: none;
+}
