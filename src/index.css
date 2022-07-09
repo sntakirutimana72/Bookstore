@@ -3,9 +3,18 @@
 * {
   font-family: "Poppins", sans-serif;
   font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  background-color: #101020;
+  background: whitesmoke;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
