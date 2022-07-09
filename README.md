@@ -1,6 +1,6 @@
-# React App Template
+# Bookstore
 
-A React app template that consists of linter configurations and other additional boilerplate code. Built with HTML5, CSS, JavaScript &amp; React.
+An app that displays book management records and their respective categories. Built with HTML5, CSS3, and React.
 
 
 ## Built With
@@ -53,6 +53,10 @@ Open _Terminal/Shell_ inside your _VSCode_ and run
     npm test
   ```
 
+## Deployment
+
+_deployed version link goes here_
+
 
 ## Authors
 
@@ -76,4 +80,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](https://github.com/sntakirutimana72/microverse-react-template/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/sntakirutimana72/Bookstore/blob/main/LICENSE) licensed.
