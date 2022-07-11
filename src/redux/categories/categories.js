@@ -1,5 +1,5 @@
 const actions = {
-  CHECK_STATUS: 'CHECK_STATUS',
+  CHECK_STATUS: 'bookstore/categories/CHECK_STATUS',
 };
 
 export default function reducer(state = [], action) {

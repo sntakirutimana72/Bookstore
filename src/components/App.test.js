@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders app heading', () => {
   render(<App />);
-  const linkElement = screen.getByText(/React Template/i);
-  expect(linkElement).toBeInTheDocument();
+  const linkEl = screen.getByRole('link', { name: 'BOOKS' });
+  expect(linkEl).toBeInTheDocument();
 });

@@ -1,6 +1,6 @@
 const actions = {
-  ADD_BOOK: 'ADD_BOOK',
-  DELETE_BOOK: 'DELETE_BOOK',
+  ADD_BOOK: 'bookstore/books/ADD_BOOK',
+  DELETE_BOOK: 'bookstore/books/DELETE_BOOK',
 };
 
 export default function reducer(state = [], action) {
@@ -9,20 +9,23 @@ export default function reducer(state = [], action) {
       return [
         ...state,
         {
+          id: action.id,
           title: action.title,
           author: action.author,
         },
       ];
     case actions.DELETE_BOOK:
-      return state.map((book) => book.id !== action.id);
+      return state.filter((book) => book.id !== action.id);
     default:
       return state;
   }
 }
 
+let nextBookId = 0;
 export const addBookAction = (title, author) => ({
   title,
   author,
+  id: ++nextBookId,
   type: actions.ADD_BOOK,
 });
 
