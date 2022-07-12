@@ -2,11 +2,14 @@ import reducer, { addBookAction, deleteBookAction } from './books';
 
 describe('Books Reducers', () => {
   it('addBookAction', () => {
-    const currentState = reducer([], addBookAction('title', 'author'));
-    expect(currentState).toEqual([{
-      id: 1,
+    const stateAfter = reducer([], addBookAction('title', 'author'));
+    expect(stateAfter).toEqual([{
+      id: stateAfter[0].id,
       title: 'title',
       author: 'author',
+      genre: 'Action',
+      current: 0,
+      chapters: [],
     }]);
   });
 
