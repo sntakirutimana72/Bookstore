@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { v4 as uid } from 'uuid';
 import Book from './Book';
 import NewBookForm from './NewBookForm';
-import storage from '../helpers/storage';
 
 import styles from './BookList.module.css';
 
 const BookList = () => {
-  const [books, setBooks] = useState();
-
-  useEffect(() => {
-    if (!books) {
-      setBooks([...storage.getItems()]);
-    } else {
-      storage.setItems(...books);
-    }
-  });
+  const books = useSelector(({ books }) => books);
 
   return (
     <div className={styles.BookList}>
       <ul>
-        {books && books.map((bookItem) => <Book key={uid()} book={bookItem} />)}
+        {books.map((bookItem) => <Book key={uid()} book={bookItem} />)}
       </ul>
       <NewBookForm />
     </div>

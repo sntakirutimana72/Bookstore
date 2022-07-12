@@ -1,18 +1,22 @@
+import { v4 as uid } from 'uuid';
+
 const actions = {
   ADD_BOOK: 'bookstore/books/ADD_BOOK',
   DELETE_BOOK: 'bookstore/books/DELETE_BOOK',
 };
+
+const drillFromAction = ({
+  id, title, author, current, genre, chapters,
+}) => ({
+  id, title, author, current, genre, chapters,
+});
 
 export default function reducer(state = [], action) {
   switch (action.type) {
     case actions.ADD_BOOK:
       return [
         ...state,
-        {
-          id: action.id,
-          title: action.title,
-          author: action.author,
-        },
+        drillFromAction(action),
       ];
     case actions.DELETE_BOOK:
       return state.filter((book) => book.id !== action.id);
@@ -21,11 +25,13 @@ export default function reducer(state = [], action) {
   }
 }
 
-let nextBookId = 0;
 export const addBookAction = (title, author) => ({
   title,
   author,
-  id: ++nextBookId,
+  id: uid(),
+  current: 0,
+  genre: 'Action',
+  chapters: [],
   type: actions.ADD_BOOK,
 });
 
