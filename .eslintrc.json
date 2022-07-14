@@ -32,7 +32,8 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "camelcase": "off"
   },
   "ignorePatterns": [
     "dist/",

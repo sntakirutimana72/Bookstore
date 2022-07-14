@@ -1,41 +1,69 @@
 import { v4 as uid } from 'uuid';
+import api from '../../apis/books';
+import {
+  payloadBeforeDispatch,
+  payloadWhileDispatch,
+} from '../../helpers/formatters';
+import actions, {
+  afterAdd,
+  afterDelete,
+  afterFetchSuccess,
+  afterFetchFail,
+} from '../actions/books';
 
-const actions = {
-  ADD_BOOK: 'bookstore/books/ADD_BOOK',
-  DELETE_BOOK: 'bookstore/books/DELETE_BOOK',
+const initialState = {
+  books: [],
+  loading: true,
+  error: null,
 };
 
-const drillFromAction = ({
-  id, title, author, current, genre, chapters,
-}) => ({
-  id, title, author, current, genre, chapters,
-});
-
-export default function reducer(state = [], action) {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.ADD_BOOK:
-      return [
-        ...state,
-        drillFromAction(action),
-      ];
-    case actions.DELETE_BOOK:
-      return state.filter((book) => book.id !== action.id);
+    case actions.ADD:
+      return afterAdd(action, state);
+    case actions.DELETE:
+      return afterDelete(action, state);
+    case actions.FETCH_SUCCESS:
+      return afterFetchSuccess(action, state);
+    case actions.FETCH_FAIL:
+      return afterFetchFail(action, state);
     default:
       return state;
   }
-}
+};
 
-export const addBookAction = (title, author) => ({
-  title,
-  author,
-  id: uid(),
-  current: 0,
-  genre: 'Action',
-  chapters: [],
-  type: actions.ADD_BOOK,
-});
+export default reducer;
 
-export const deleteBookAction = (id) => ({
-  id,
-  type: actions.DELETE_BOOK,
-});
+export const setAddedBook = (title, author) => {
+  const payload = payloadBeforeDispatch(uid(), title, author);
+  return async (dispatch) => {
+    const success = await api.create(payload);
+
+    if (success) {
+      dispatch({
+        type: actions.ADD,
+        payload: payloadWhileDispatch(payload),
+      });
+    }
+  };
+};
+
+export const sliceDeletedBook = (id) => async (dispatch) => {
+  const success = await api.delete(id);
+  if (success) {
+    dispatch({ type: actions.DELETE, id });
+  }
+};
+
+export const fetchAllBooks = () => (dispatch) => {
+  api
+    .getAll()
+    .then((payload) => dispatch({
+      type: actions.FETCH_SUCCESS,
+      payload,
+    }))
+    .catch(({ message }) => dispatch({
+      type: actions.FETCH_FAIL,
+      error: message,
+    }));
+};

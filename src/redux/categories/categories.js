@@ -1,14 +1,14 @@
-const actions = {
-  CHECK_STATUS: 'bookstore/categories/CHECK_STATUS',
-};
+import actions from '../actions/categories';
 
-export default function reducer(state = [], action) {
+const reducer = (state = [], action) => {
   switch (action.type) {
     case actions.CHECK_STATUS:
       return 'Under construction';
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 export const checkStatusCategAction = () => ({ type: actions.CHECK_STATUS });

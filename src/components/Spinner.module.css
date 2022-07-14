@@ -1,0 +1,71 @@
+.LdsDots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LdsDots > div {
+  position: relative;
+  width: 98px;
+  height: 23px;
+}
+
+.LdsDots > div div {
+  position: absolute;
+  top: 4px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #10103059;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.LdsDots > div div:nth-child(1) {
+  margin-left: 10px;
+  animation: LdsDots1 0.6s infinite;
+}
+
+.LdsDots > div div:nth-child(2) {
+  margin-left: 10px;
+  animation: LdsDots2 0.6s infinite;
+}
+
+.LdsDots > div div:nth-child(3) {
+  margin-left: 40px;
+  animation: LdsDots2 0.6s infinite;
+}
+
+.LdsDots > div div:nth-child(4) {
+  margin-left: 70px;
+  animation: LdsDots3 0.6s infinite;
+}
+
+@keyframes LdsDots1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes LdsDots3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes LdsDots2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(30px, 0);
+  }
+}

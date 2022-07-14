@@ -1,45 +1,74 @@
-import reducer, { addBookAction, deleteBookAction } from './books';
+import actions from '../actions/books';
+import reducer from './books';
+import {
+  payloadBeforeDispatch,
+  payloadWhileDispatch,
+} from '../../helpers/formatters';
+
+const initialState = {
+  loading: true,
+  error: null,
+  books: [],
+};
 
 describe('Books Reducers', () => {
-  it('addBookAction', () => {
-    const stateAfter = reducer([], addBookAction('title', 'author'));
-    expect(stateAfter).toEqual([{
-      id: stateAfter[0].id,
-      title: 'title',
-      author: 'author',
-      genre: 'Action',
-      current: 0,
-      chapters: [],
-    }]);
+  it(actions.ADD, () => {
+    const beforePayload = payloadBeforeDispatch('title', 'author');
+    const afterPayload = payloadWhileDispatch(beforePayload);
+    const stateAfter = reducer({
+      ...initialState,
+      error: 'Not Found',
+    }, {
+      type: actions.ADD,
+      payload: afterPayload,
+    });
+    expect(stateAfter).toEqual({
+      loading: true,
+      error: null,
+      books: [afterPayload],
+    });
   });
 
-  it('deleteBookAction', () => {
-    expect(
-      reducer([
-        {
-          id: 1,
-          title: 'title',
-          author: 'author',
-        },
-      ], deleteBookAction(1)),
-    ).toEqual([]);
-  });
-
-  it('Unknown action', () => {
-    expect(
-      reducer([
-        {
-          id: 2,
-          title: 'title',
-          author: 'author',
-        },
-      ], { type: 'UNKNOWN' }),
-    ).toEqual([
-      {
-        id: 2,
+  it(actions.FETCH_SUCCESS, () => {
+    const payload = {
+      ITEM_1: [{
         title: 'title',
-        author: 'author',
-      },
-    ]);
+      }],
+    };
+    expect(reducer(initialState, { type: actions.FETCH_SUCCESS, payload }))
+      .toEqual({
+        ...initialState,
+        loading: null,
+        books: [
+          {
+            id: 'ITEM_1',
+            title: 'title',
+            current: 0,
+            chapters: [],
+          },
+        ],
+      });
+  });
+
+  it(actions.FETCH_FAIL, () => {
+    expect(reducer(initialState, { type: actions.FETCH_FAIL, error: 'ERROR' }))
+      .toEqual({ ...initialState, loading: null, error: 'ERROR' });
+  });
+
+  it(actions.DELETE, () => {
+    const target = {
+      id: 'TARGET_ID',
+    };
+    expect(
+      reducer({ ...initialState, books: [target] }, {
+        type: actions.DELETE,
+        id: target.id,
+      }),
+    ).toEqual({ ...initialState, error: 'Not Found' });
+  });
+
+  it('UNKNOWN', () => {
+    expect(reducer(initialState, { type: 'UNKNOWN' }))
+      .toEqual(initialState);
   });
 });
