@@ -128,7 +128,6 @@
 }
 
 .Action {
-  border: none;
   padding: 3px 8px;
   border-radius: 4px;
   background-color: #fff;
@@ -140,7 +139,7 @@
   line-height: normal;
   letter-spacing: normal;
   color: #4386bf;
-  border: solid 1px none;
+  border: solid 1px #fff;
 }
 
 .Action:hover,
@@ -186,14 +185,16 @@
     conic-gradient(var(--fg) calc(var(--percentile) * 1%), var(--bg) 0);
 }
 
-@keyframes progress {
-  0%,
-  33% { --percentile: 0; }
-  100% { --percentile: var(--value); }
-}
+/* stylelint-disable csstree/validator */
 
 @property --percentile {
   syntax: '<number>';
   inherits: false;
   initial-value: 0;
+}
+
+@keyframes progress {
+  0%,
+  33% { --percentile: 0; }
+  100% { --percentile: var(--value); }
 }
