@@ -29,7 +29,6 @@
 .BookActions {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
 }
 
 .Genre {
@@ -128,7 +127,6 @@
 }
 
 .Action {
-  padding: 3px 8px;
   border-radius: 4px;
   background-color: #fff;
   font-family: "Roboto Slab", sans-serif;
@@ -145,13 +143,14 @@
 .Action:hover,
 .Action:focus {
   outline: none;
+  padding: 2px 8px;
   border-color: #e8e8e8;
   box-shadow: 0 0 4px 0 #00000030;
 }
 
 .LineSep {
+  margin: 0 10px;
   border: solid 1px #e8e8e8;
-  margin: 4px 0;
   background-color: #e8e8e8;
 }
 
