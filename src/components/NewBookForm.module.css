@@ -1,0 +1,69 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Fields {
+  display: flex;
+  gap: 20px;
+}
+
+.Separator {
+  height: 0.125rem;
+  margin: 40px 5px 20px 5px;
+  background: #e8e8e8;
+  border: solid 1px #e8e8e8;
+}
+
+.Title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  color: #888;
+  width: 100%;
+  padding-left: 5px;
+}
+
+.Field {
+  padding: 10px 35px;
+  border-radius: 4px;
+  border: solid 2px #e8e8e8;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.15px;
+  color: #c4c4c4;
+}
+
+.Field:first-child {
+  flex-grow: 2;
+}
+
+.Field:focus {
+  outline: none;
+  border: solid 2px #0000e8;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+}
+
+.Submit {
+  border: none;
+  padding: 6px 18px;
+  border-radius: 4px;
+  background-color: #0290ff;
+  font-size: 0.813rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #fff;
+}

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { setAddedBook } from '../redux/books/books';
+import styles from './NewBookForm.module.css';
 
 const NewBookForm = () => {
   const [title, setTitle] = useState('');
@@ -23,25 +24,32 @@ const NewBookForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h2>ADD NEW BOOK</h2>
-      <input
-        type="text"
-        name="title"
-        value={title}
-        onChange={onTitle}
-        placeholder="Book Title"
-        required
-      />
-      <input
-        type="text"
-        name="author"
-        value={author}
-        onChange={onAuthor}
-        placeholder="Book Author"
-        required
-      />
-      <button type="submit">ADD BOOK</button>
+    <form onSubmit={onSubmit} className={styles.Form}>
+      <div className={styles.Separator} />
+      <h2 className={styles.Title}>ADD NEW BOOK</h2>
+      <div>
+        <div className={styles.Fields}>
+          <input
+            type="text"
+            name="title"
+            value={title}
+            onChange={onTitle}
+            className={styles.Field}
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            name="author"
+            value={author}
+            onChange={onAuthor}
+            className={styles.Field}
+            placeholder="Author"
+            required
+          />
+          <button type="submit" className={styles.Submit}>ADD BOOK</button>
+        </div>
+      </div>
     </form>
   );
 };
