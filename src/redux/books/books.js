@@ -1,6 +1,7 @@
 import { v4 as uid } from 'uuid';
 import api from '../../apis/books';
 import {
+  isObjectEmpty,
   payloadBeforeDispatch,
   payloadWhileDispatch,
 } from '../../helpers/formatters';
@@ -12,7 +13,37 @@ import actions, {
 } from '../actions/books';
 
 const initialState = {
-  books: [],
+  books: [
+    {
+      id: uid(),
+      title: 'The Hunger Games',
+      author: 'MCU by Suzanne Collins',
+      current: 2,
+      category: 'Action | SCI-FI',
+      chapters: [
+        'The Hunger Games',
+        'Catching Fire',
+        'The Mockingjay',
+      ],
+    },
+    {
+      id: uid(),
+      title: 'FAST & FURIOUS',
+      author: 'Vin Diesel | Ludacris',
+      current: 6,
+      category: 'Action | Sport',
+      chapters: [
+        'The Fast and the Furious',
+        'Fast 2 Furious',
+        'The Fast and the Furious: Tokyo Drift',
+        'Fast & Furious 4',
+        'Fast Five',
+        'Fast & Furious 6',
+        'Furious 7',
+        'The Fate of the Furious',
+      ],
+    },
+  ],
   loading: true,
   error: null,
 };
@@ -58,12 +89,14 @@ export const sliceDeletedBook = (id) => async (dispatch) => {
 export const fetchAllBooks = () => (dispatch) => {
   api
     .getAll()
-    .then((payload) => dispatch({
-      type: actions.FETCH_SUCCESS,
-      payload,
-    }))
-    .catch(({ message }) => dispatch({
+    .then((payload) => {
+      if (isObjectEmpty(payload)) {
+        throw Error;
+      }
+      dispatch({ type: actions.FETCH_SUCCESS, payload });
+    })
+    .catch(() => dispatch({
       type: actions.FETCH_FAIL,
-      error: message,
+      error: 'Not Found',
     }));
 };
