@@ -4,6 +4,7 @@ import Book from './Book';
 import LdsDots from './Spinner';
 import NewBookForm from './NewBookForm';
 import { fetchAllBooks } from '../redux/books/books';
+import { isObjectEmpty } from '../helpers/formatters';
 import styles from './BookList.module.css';
 
 const BookList = () => {
@@ -21,10 +22,10 @@ const BookList = () => {
       {loading && (
         <LdsDots />
       )}
-      {error && (
-        <p>{error}</p>
+      {error && isObjectEmpty(books) && (
+        <p className={styles.Para}>{error}</p>
       )}
-      {books.length !== 0 && (
+      {!isObjectEmpty(books) && (
         <ul>
           {books.map((item) => (<Book key={item.id} book={item} />))}
         </ul>

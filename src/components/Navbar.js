@@ -29,12 +29,22 @@ const Navbar = () => {
 
   return (
     <nav className={styles.Navbar}>
-      <Link to="/">Bookstore CMS</Link>
-      <ul className={styles.UlLinks}>
-        <li><Link to="/">BOOKS</Link></li>
-        <li><Link to="/categories">CATEGORIES</Link></li>
-      </ul>
-      <button type="button" onClick={toggleUser} className={styles.Profile}>
+      <Link to="/" className={styles.Home}>Bookstore CMS</Link>
+      <div>
+        <ul className={styles.UlLinks}>
+          <li>
+            <Link to="/" className={styles.Link}>BOOKS</Link>
+          </li>
+          <li>
+            <Link to="/categories" className={styles.Link}>CATEGORIES</Link>
+          </li>
+        </ul>
+      </div>
+      <button
+        type="button"
+        onClick={toggleUser}
+        className={`fas fa-user ${styles.Oval}`}
+      >
         <UserProfilePanel display={display} username="username" />
       </button>
     </nav>
