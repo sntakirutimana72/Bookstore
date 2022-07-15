@@ -1,16 +1,43 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { v4 as uid } from 'uuid';
 import { sliceDeletedBook } from '../redux/books/books';
 
 import css from './Book.module.css';
 
-const BookMeta = ({ category, title, author }) => (
-  <div>
-    <span className={css.Genre}>{category}</span>
-    <h2 className={css.Title}>{title}</h2>
-    <span className={css.Author}>{author}</span>
-  </div>
-);
+const BookMeta = ({ category, title, author }) => {
+  const slicer = (str) => {
+    const dummies = str.split(';');
+    let times = dummies.length - 1;
+
+    if (times < 1) {
+      return dummies;
+    }
+    const newList = [];
+    while (times >= 0) {
+      const text = dummies.shift();
+      if (times === 0) {
+        newList.push(text);
+        break;
+      }
+      newList.push(text, '');
+      --times;
+    }
+    return newList;
+  };
+
+  return (
+    <div>
+      <ul className={css.Genre}>
+        {slicer(category).map((cat) => (<li key={uid()}>{cat}</li>))}
+      </ul>
+      <h2 className={css.Title}>{title}</h2>
+      <ul className={css.Author}>
+        {slicer(author).map((writer) => (<li key={uid()}>{writer}</li>))}
+      </ul>
+    </div>
+  );
+};
 BookMeta.propTypes = {
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
