@@ -11,5 +11,3 @@ export const payloadWhileDispatch = ({ item_id, ...others }) => ({
   chapters: [],
   ...others,
 });
-
-export const isObjectEmpty = (object) => Object.keys(object).length === 0;

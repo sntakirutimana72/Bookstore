@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
-@import url("https://use.fontawesome.com/releases/v6.1.1/css/all.css");
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   margin: 0;
   padding: 0;
 }
 
 body {
-  padding: 0 10px;
-  background: #f5f6fa;
+  background: whitesmoke;
 }
 
 ul {
@@ -21,8 +17,4 @@ ul {
 
 a {
   text-decoration: none;
-}
-
-button {
-  cursor: pointer;
 }

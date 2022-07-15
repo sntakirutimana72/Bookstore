@@ -18,9 +18,17 @@ const remove = async (id) => {
 const getAll = async () => {
   const response = await fetch(API_BASE_URL);
   if (response.ok) {
-    return response.json();
+    try {
+      const result = await response.json();
+      if (Object.keys(result).length === 0) {
+        throw Error;
+      }
+      return result;
+    } catch {
+      throw new Error('Not Found');
+    }
   }
-  throw Error;
+  throw new Error('Not Found');
 };
 
 export default {

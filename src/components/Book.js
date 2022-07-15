@@ -6,9 +6,9 @@ import css from './Book.module.css';
 
 const BookMeta = ({ category, title, author }) => (
   <div>
-    <span className={css.Genre}>{category}</span>
-    <h2 className={css.Title}>{title}</h2>
-    <span className={css.Author}>{author}</span>
+    <span>{category}</span>
+    <h2>{title}</h2>
+    <span>{author}</span>
   </div>
 );
 BookMeta.propTypes = {
@@ -18,39 +18,31 @@ BookMeta.propTypes = {
 };
 
 const BookProgress = ({ progress }) => (
-  <div className={css.BookProgress}>
-    <div className={css.ProgRow}>
-      <div
-        className={css.ProgressBar}
-        aria-valuenow={progress}
-        aria-valuemin="0"
-        aria-valuemax="100"
-        style={{ '--value': progress }}
-      />
-      <span className={css.Percentage}>
-        {progress}
-        %
-        <span className={css.Completed}>completed</span>
-      </span>
-      <div className={css.LineSep2} />
-    </div>
+  <div>
+    <span />
+    <span>
+      {progress}
+      %
+      <br />
+      <span>completed</span>
+    </span>
   </div>
 );
 BookProgress.propTypes = { progress: PropTypes.number.isRequired };
 
 const BookStatus = ({ chapter }) => (
-  <div className={css.BookStatus}>
-    <div className={css.StatusWrap}>
-      <span className={css.Current}>CURRENT CHAPTER</span>
-      <span className={css.Chapter}>{chapter}</span>
-      <button type="button" className={css.UpdateBtn}>UPDATE PROGRESS</button>
-    </div>
+  <div>
+    <span>CURRENT CHAPTER</span>
+    <br />
+    <span>{chapter}</span>
+    <br />
+    <button type="button">UPDATE PROGRESS</button>
   </div>
 );
 BookStatus.propTypes = { chapter: PropTypes.string.isRequired };
 
 const ActionButton = ({ trigger, title }) => (
-  <button type="button" onClick={trigger} className={css.Action}>{title}</button>
+  <button type="button" onClick={trigger}>{title}</button>
 );
 ActionButton.propTypes = {
   trigger: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
@@ -71,13 +63,13 @@ const Book = ({ book }) => {
 
   const progress = (
     current !== 0
-      ? Math.ceil((100 * current) / chapters.length)
+      ? (100 * current) / chapters.length
       : 0
   );
 
   const chapter = (
     chapters.length
-      ? chapters[current - 1]
+      ? chapters[current]
       : ''
   );
 
@@ -90,14 +82,13 @@ const Book = ({ book }) => {
       </div>
       <div className={css.BookActions}>
         <ActionButton title="Comments" />
-        <div className={css.LineSep} />
         <ActionButton trigger={onDelete} title="Remove" />
-        <div className={css.LineSep} />
         <ActionButton title="Edit" />
       </div>
     </li>
   );
 };
+
 Book.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.string.isRequired,
