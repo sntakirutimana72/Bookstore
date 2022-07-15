@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './Navbar.module.css';
 
 const UserProfilePanel = ({ display, username }) => (
-  <div style={{ display }}>
+  <div className={styles.UserProfPanel} style={{ display }}>
     <ul>
       <li>{username}</li>
       <li><Link to="/profile">Profile</Link></li>
@@ -80,7 +80,7 @@ const Navbar = () => {
         onClick={toggleUser}
         className={`fas fa-user ${styles.Oval}`}
       >
-        <UserProfilePanel display={display} username="username" />
+        <UserProfilePanel display={display} username="Steve077" />
       </button>
     </nav>
   );

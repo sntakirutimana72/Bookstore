@@ -38,12 +38,70 @@
 .Oval {
   position: absolute;
   right: 40px;
-
   --size: 40px;
-
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
   border: solid 1px #e8e8e8;
-  color: blue;
+  color: #0290ff;
+}
+
+.UserProfPanel {
+  position: absolute;
+  width: 200px;
+  left: -190px;
+  top: -25px;
+  z-index: 1000;
+  padding: 20px 10px;
+  background: #fff;
+  border-radius: 4px 30px 4px 20px;
+  border: solid 1px #e8e8e8;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+  animation: panel-pos 2s 1 forwards;
+  -webkit-animation: panel-pos 1s 1 forwards;
+}
+
+@keyframes panel-pos {
+  0% {
+    opacity: 0.3;
+  }
+  33% {
+    opacity: 0.6;
+    top: 25px;
+  }
+  100% {
+    top: 40px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes panel-pos {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0.3;
+    top: 25px;
+  }
+  100% {
+    top: 40px;
+    opacity: 1;
+  }
+}
+
+.UserProfPanel ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.15rem;
+}
+
+.UserProfPanel li {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.UserProfPanel li:not(:last-child) {
+  border-bottom: solid 1px #e8e8e8;
+  padding-bottom: 10px;
 }

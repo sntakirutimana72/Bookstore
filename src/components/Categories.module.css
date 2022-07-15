@@ -7,10 +7,10 @@
 }
 
 .Para {
-  font-size: 2rem;
-  padding: 20px;
+  font-size: 4.813rem;
+  padding: 3.125rem;
   text-align: center;
-  opacity: 0.1;
+  color: #e8e8e8;
 }
 
 .CheckStatus {

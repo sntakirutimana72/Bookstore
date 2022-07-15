@@ -13,6 +13,7 @@
 .BookInfo {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
 }
 
 .BookProgress,
@@ -185,13 +186,10 @@
 
 .ProgressBar {
   --size: 90px;
-
   border-radius: 50%;
-
   --fg: #00f;
   --bg: #f8f8fd;
   --percentile: var(--value);
-
   animation: progress 2s 1 forwards;
   width: var(--size);
   height: var(--size);

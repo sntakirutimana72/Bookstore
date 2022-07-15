@@ -18,8 +18,8 @@ const initialState = {
       id: uid(),
       title: 'The Hunger Games',
       author: 'Suzanne Collins',
-      current: 2,
-      category: 'Action;SCI-FI;Adventure',
+      current: 1,
+      category: 'Action;Sci-Fi;Adventure',
       chapters: [
         'The Hunger Games',
         'Catching Fire',
@@ -30,7 +30,7 @@ const initialState = {
       id: uid(),
       title: 'FAST & FURIOUS',
       author: 'Vin Diesel;Ludacris',
-      current: 6,
+      current: 7,
       category: 'Action;Sport',
       chapters: [
         'The Fast and the Furious',
